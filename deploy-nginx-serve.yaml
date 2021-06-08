@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-nginx-serve
+spec:
+  selector:
+    matchLabels:
+      labels.k8s.luma/app: nginx-serve
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        labels.k8s.luma/app: nginx-serve
+    spec:
+      containers:
+      - name: nginx
+        image: docker.io/nginx:1.14.2
+        ports:
+        - containerPort: 80
